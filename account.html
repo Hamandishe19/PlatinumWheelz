@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account | PlatinumWheelz</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#E63946',
+                        dark: '#111827',
+                        darker: '#030712',
+                        light: '#F3F4F6',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;800&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="bg-darker text-light font-sans antialiased overflow-x-hidden pt-20">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-darker/95 border-b border-gray-800 shadow-lg" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html"
+                        class="font-heading text-2xl font-bold tracking-tighter text-white flex items-center gap-2">
+                        <span>Platinum<span class="text-primary">Wheelz</span></span>
+                    </a>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-300 hover:text-white font-medium transition-colors">Home</a>
+                    <a href="inventory.html"
+                        class="text-gray-300 hover:text-white font-medium transition-colors">Inventory</a>
+                    <a href="about.html" class="text-gray-300 hover:text-white font-medium transition-colors">About
+                        Us</a>
+                    <a href="contact.html" class="text-gray-300 hover:text-white font-medium transition-colors">Contact</a>
+
+                    <a href="account.html" class="text-primary font-semibold transition-colors" title="Account">
+                        <i class="fa-solid fa-user text-xl"></i>
+                    </a>
+
+                    <a href="cart.html" class="relative text-gray-300 hover:text-white transition-colors group">
+                        <i class="fa-solid fa-cart-shopping text-xl group-hover:scale-110 transition-transform"></i>
+                        <span
+                            class="cart-count hidden absolute -top-2 -right-2 bg-primary text-white text-[10px] font-bold h-4 w-4 flex items-center justify-center rounded-full">0</span>
+                    </a>
+                </div>
+
+                <div class="md:hidden flex items-center gap-5">
+                    <a href="account.html" class="text-gray-300 hover:text-white">
+                        <i class="fa-solid fa-user text-xl"></i>
+                    </a>
+                    <a href="cart.html" class="relative text-gray-300">
+                        <i class="fa-solid fa-cart-shopping text-xl"></i>
+                        <span
+                            class="cart-count hidden absolute -top-2 -right-2 bg-primary text-white text-[10px] font-bold h-4 w-4 flex items-center justify-center rounded-full">0</span>
+                    </a>
+                    <button onclick="toggleMobileMenu()" class="text-gray-300 hover:text-white focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-dark border-b border-gray-800">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html"
+                    class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-800 rounded-md">Home</a>
+                <a href="inventory.html"
+                    class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-800 rounded-md">Inventory</a>
+                <a href="about.html"
+                    class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-800 rounded-md">About Us</a>
+                <a href="contact.html" class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-800 rounded-md">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="bg-dark py-12 border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="font-heading text-4xl md:text-5xl font-bold text-white mb-2">My <span
+                    class="text-primary">Account</span></h1>
+            <p class="text-gray-400">Manage your profile and order history</p>
+        </div>
+    </header>
+
+    <!-- Content Container -->
+    <main class="py-12 min-h-screen">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Not Logged In State -->
+            <div id="not-logged-in" class="text-center py-20">
+                <i class="fa-solid fa-lock text-6xl text-gray-700 mb-6"></i>
+                <h2 class="font-heading text-3xl font-bold text-white mb-4">Sign in to your account</h2>
+                <p class="text-gray-400 mb-8">You need to be logged in to view your account details and order history.</p>
+                <a href="login.html"
+                    class="inline-block bg-primary hover:bg-red-700 text-white px-8 py-3 rounded-lg font-bold transition-colors shadow-lg shadow-primary/20">
+                    Sign In or Create Account
+                </a>
+            </div>
+
+            <!-- Logged In State -->
+            <div id="logged-in-state" class="hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-12">
+                    <!-- Profile Card -->
+                    <div class="lg:col-span-1">
+                        <div class="bg-dark rounded-xl border border-gray-800 p-6">
+                            <div class="text-center">
+                                <div class="w-20 h-20 rounded-full bg-primary/10 border-2 border-primary flex items-center justify-center mx-auto mb-4">
+                                    <i class="fa-solid fa-user text-3xl text-primary"></i>
+                                </div>
+                                <h3 id="profile-name" class="font-heading text-2xl font-bold text-white mb-1">User</h3>
+                                <p id="profile-email" class="text-sm text-gray-400 mb-6">email@example.com</p>
+                                <button onclick="handleLogout()"
+                                    class="w-full bg-red-900/20 text-red-500 hover:bg-red-500 hover:text-white py-2 rounded-lg transition-colors font-bold text-sm">
+                                    Sign Out
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Account Info -->
+                    <div class="lg:col-span-3">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                            <div class="bg-dark rounded-xl border border-gray-800 p-6">
+                                <div class="flex items-center gap-4 mb-4">
+                                    <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                                        <i class="fa-solid fa-shopping-cart text-primary text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-gray-500 uppercase tracking-wider font-semibold">Total Orders</p>
+                                        <p id="total-orders" class="text-3xl font-bold text-white">0</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-dark rounded-xl border border-gray-800 p-6">
+                                <div class="flex items-center gap-4 mb-4">
+                                    <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                                        <i class="fa-solid fa-dollar-sign text-primary text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-gray-500 uppercase tracking-wider font-semibold">Total Spent</p>
+                                        <p id="total-spent" class="text-3xl font-bold text-white">$0</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-dark rounded-xl border border-gray-800 p-6">
+                                <div class="flex items-center gap-4 mb-4">
+                                    <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                                        <i class="fa-solid fa-clock text-primary text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-gray-500 uppercase tracking-wider font-semibold">Member Since</p>
+                                        <p id="member-since" class="text-lg font-bold text-white">2026</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Orders Table -->
+                <div class="bg-dark rounded-xl border border-gray-800 overflow-hidden">
+                    <div class="p-6 border-b border-gray-800">
+                        <h2 class="font-heading text-2xl font-bold text-white">Order History</h2>
+                    </div>
+
+                    <div id="orders-container" class="overflow-x-auto">
+                        <!-- Populated by JS -->
+                    </div>
+
+                    <div id="no-orders" class="hidden p-12 text-center">
+                        <i class="fa-solid fa-inbox text-6xl text-gray-700 mb-4"></i>
+                        <h3 class="text-xl font-bold text-white mb-2">No orders yet</h3>
+                        <p class="text-gray-400 mb-6">Start exploring our inventory to place your first order</p>
+                        <a href="inventory.html"
+                            class="inline-block bg-primary hover:bg-red-700 text-white px-6 py-2 rounded-lg font-bold transition-colors">
+                            Browse Inventory
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark pt-10 pb-10 border-t border-gray-800 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <a href="index.html"
+                class="inline-flex font-heading text-2xl font-bold tracking-tighter text-white items-center gap-2 mb-4">
+                <span>Platinum<span class="text-primary">Wheelz</span></span>
+            </a>
+            <p class="text-gray-500 text-sm">&copy; 2026 PlatinumWheelz. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            const notLoggedInEl = document.getElementById('not-logged-in');
+            const loggedInStateEl = document.getElementById('logged-in-state');
+
+            if (!currentUser) {
+                notLoggedInEl.classList.remove('hidden');
+                loggedInStateEl.classList.add('hidden');
+                return;
+            }
+
+            notLoggedInEl.classList.add('hidden');
+            loggedInStateEl.classList.remove('hidden');
+
+            // Update profile
+            document.getElementById('profile-name').textContent = currentUser.name || currentUser.email.split('@')[0];
+            document.getElementById('profile-email').textContent = currentUser.email;
+
+            // Get user orders
+            let userOrders = JSON.parse(localStorage.getItem('userOrders')) || [];
+            userOrders = userOrders.filter(order => order.customer === currentUser.email);
+
+            document.getElementById('total-orders').textContent = userOrders.length;
+
+            // Calculate total spent
+            const totalSpent = userOrders.reduce((sum, order) => sum + order.total, 0);
+            document.getElementById('total-spent').textContent = formatCurrency(totalSpent);
+
+            // Member since
+            const loginDate = new Date(currentUser.loginTime);
+            document.getElementById('member-since').textContent = loginDate.getFullYear();
+
+            // Render orders
+            const ordersContainer = document.getElementById('orders-container');
+            const noOrdersEl = document.getElementById('no-orders');
+
+            if (userOrders.length === 0) {
+                noOrdersEl.classList.remove('hidden');
+                ordersContainer.innerHTML = '';
+            } else {
+                noOrdersEl.classList.add('hidden');
+                ordersContainer.innerHTML = `
+                    <table class="w-full">
+                        <thead>
+                            <tr class="border-b border-gray-800 bg-gray-900/50">
+                                <th class="text-left p-4 text-gray-400 font-semibold text-sm">Order ID</th>
+                                <th class="text-left p-4 text-gray-400 font-semibold text-sm">Date</th>
+                                <th class="text-left p-4 text-gray-400 font-semibold text-sm">Items</th>
+                                <th class="text-left p-4 text-gray-400 font-semibold text-sm">Total</th>
+                                <th class="text-left p-4 text-gray-400 font-semibold text-sm">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${userOrders.map(order => `
+                                <tr class="border-b border-gray-800 hover:bg-gray-900/30 transition-colors">
+                                    <td class="p-4 text-white font-mono text-sm">${order.id}</td>
+                                    <td class="p-4 text-gray-400 text-sm">${order.date}</td>
+                                    <td class="p-4 text-gray-400 text-sm">${order.items.length} vehicle${order.items.length !== 1 ? 's' : ''}</td>
+                                    <td class="p-4 text-primary font-bold">${formatCurrency(order.total)}</td>
+                                    <td class="p-4">
+                                        <span class="px-3 py-1 rounded-full text-xs font-semibold ${
+                                            order.status === 'Complete' ? 'bg-green-900/30 text-green-500' : 'bg-yellow-900/30 text-yellow-500'
+                                        }">
+                                            ${order.status}
+                                        </span>
+                                    </td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                `;
+            }
+        });
+
+        function handleLogout() {
+            if (confirm('Are you sure you want to sign out?')) {
+                localStorage.removeItem('currentUser');
+                window.location.href = 'index.html';
+            }
+        }
+    </script>
+</body>
+
+</html>
