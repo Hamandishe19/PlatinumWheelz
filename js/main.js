@@ -277,13 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
-}
 
-// Mobile Menu Toggle
-function toggleMobileMenu() {
-    const menu = document.getElementById('mobile-menu');
-    menu.classList.toggle('hidden');
-}
 
 // Navbar Scroll Effect
 window.addEventListener('scroll', () => {
